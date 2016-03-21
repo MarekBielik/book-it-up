@@ -1,4 +1,6 @@
 {
+    "zizaco/entrust": "5.2.x-dev",
+
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],

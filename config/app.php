@@ -126,6 +126,9 @@ return [
         //users' roles provider
         Zizaco\Entrust\EntrustServiceProvider::class,
 
+        //extended validation class
+        'Intervention\Validation\ValidationServiceProvider',
+
         /*
          * Laravel Framework Service Providers...
          */

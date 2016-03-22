@@ -123,6 +123,9 @@ return [
 
     'providers' => [
 
+        //users' roles provider
+        Zizaco\Entrust\EntrustServiceProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -170,6 +173,8 @@ return [
     */
 
     'aliases' => [
+
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,

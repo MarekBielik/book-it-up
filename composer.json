@@ -1,12 +1,11 @@
 {
-    "zizaco/entrust": "5.2.x-dev",
-
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
+        "zizaco/entrust": "5.2.x-dev",
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*"
     },

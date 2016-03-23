@@ -33,5 +33,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/home', 'HomeController@home');
     Route::get('/search_book', 'HomeController@searchBook')->name('search_book');
+    Route::get('/book/{book}', 'HomeController@displayBook')->name('display_book');
 });
 

@@ -12,11 +12,11 @@ class Book extends Model
         return $this->hasMany('App\Loan');
     }
 
-    public function loanedCopies() {
+    public function onLoanCopies() {
         return $this->loans->count();
     }
 
-    public function freeCopies() {
-        return $this->copies - $this->loanedCopies();
+    public function inStockCopies() {
+        return $this->copies - $this->onLoanCopies();
     }
 }

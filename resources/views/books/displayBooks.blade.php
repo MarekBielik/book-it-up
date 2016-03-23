@@ -11,18 +11,19 @@
                         <th>Author</th>
                         <th>ISBN</th>
                         <th>Genre</th>
-                        <th>In stock</th>
-                        <th>&nbsp;</th>
+                        <th>Available</th>
                         </thead>
                         <tbody>
                         @foreach ($books as $book)
-                            <tr>
+                            <tr class='clickable-row' data-href='/book/{{ $book->id }}' role="button">
                                 <td class="table-text"><div>{{ $book->title }}</div></td>
                                 <td class="table-text"><div>{{ $book->author }}</div></td>
                                 <td class="table-text"><div>{{ $book->isbn }}</div></td>
                                 <td class="table-text"><div>{{ $book->genre }}</div></td>
-                                @if ($book->freeCopies())
+                                @if ($book->inStockCopies())
                                     <td><span class="label label-success">Yes</span></td>
+                                @else
+                                    <td><span class="label label-danger">No</span></td>
                                 @endif
                             </tr>
                         @endforeach
@@ -32,4 +33,14 @@
             </div>
         </div>
     </div>
+
+    <!-- make the rows clickable -->
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
 @endsection
+

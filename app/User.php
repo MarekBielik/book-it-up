@@ -30,4 +30,6 @@ class User extends Authenticatable
     public function loans() {
         return $this->hasMany('App\Loan');
     }
+
+    //todo: user's account can be active or blocked
 }

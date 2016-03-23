@@ -47,4 +47,10 @@ class HomeController extends Controller
             'books' => $books,
         ]);
     }
+
+    public function displayBook(Book $book) {
+        return view('books.displayBook', [
+            'book' => $book,
+        ]);
+}
 }

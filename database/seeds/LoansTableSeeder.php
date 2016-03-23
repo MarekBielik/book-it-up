@@ -29,7 +29,7 @@ class LoansTableSeeder extends Seeder
         $loan->save();
 
 
-        //random loans
+        //todo:random loans
 
     }
 }

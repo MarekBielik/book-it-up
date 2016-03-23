@@ -23,12 +23,11 @@ class BooksTableSeeder extends Seeder
 
         //generate random books
 
-        foreach (range(1, 100) as $index) {
-            $sentence = $faker->sentence();
+        foreach (range(1, 200) as $index) {
 
             DB::table('books')->insert([
                 'isbn' => $faker->isbn13,
-                'title' => substr($sentence, 0, strlen($sentence) - 1),
+                'title' => $faker->text(30),
                 'genre' => $genres[rand(0, count($genres) - 1)],
                 'author' => $faker->name,
                 'copies' => rand(0, 10),

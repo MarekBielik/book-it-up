@@ -16,20 +16,22 @@ class LoansTableSeeder extends Seeder
     {
         //one static loan
         $book = Book::where('isbn', '=', '9780061042577')->first();
-        $user = User::where('email', '=', 'librarian@mail.com')->first();
+        $user = User::where('email', '=', 'customer@mail.com')->first();
 
         $loan = new Loan();
         $loan->renewals = 3;
         $loan->from = date("Y/m/d");
+        $loan->due_to = date("Y/m/d", strtotime('+30 days'));
+        $loan->isActive = FALSE;
         $loan->book()->associate($book);
-        $loan->user()->associate($user);
-        $book->loans()->save($loan);
-        $user->loans()->save($loan);
+        $loan->customer()->associate($user);
+        $loan->librarian()->associate(null);
+        //$book->loans()->save($loan);
+        //$user->customerLoans()->save($loan);
 
         $loan->save();
 
 
         //todo:random loans
-
     }
 }

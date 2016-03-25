@@ -18,12 +18,16 @@ class CreateLoansTable extends Migration
             $table->date('from');
             $table->date('due_to');
             $table->unsignedSmallInteger('renewals');
+            $table->boolean('isActive');
             //reference to books
             $table->integer('book_id')->unsigned();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            //reference to customers
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             //reference to librarians
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('librarian_id')->unsigned()->nullable();
+            $table->foreign('librarian_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

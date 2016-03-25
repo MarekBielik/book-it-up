@@ -13,7 +13,10 @@
                     ISBN: <br> {{ $book->isbn }} <br><br>
                     Genre: <br> {{ $book->genre }}<br><br>
                     In stock: <br> {{ $book->inStockCopies() }}<br><br>
-                    On Loan: <br> {{ $book->onLoanCopies() }}
+                    On Loan: <br> {{ $book->onLoanCopies() }} <br><br>
+                    @if ($book->inStockCopies())
+                        <a href="/customer/reserve/{{ $book->id }}" class="btn btn-primary" role="button">Book it</a>
+                        @endif
                 </div>
             </div>
         </div>

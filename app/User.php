@@ -27,8 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function loans() {
-        return $this->hasMany('App\Loan');
+    public function customerLoans() {
+        return $this->hasMany('App\Loan', 'customer_id');
+    }
+
+    public function librarianLoans() {
+        return $this->hasMany('App\Loan', 'librarian_id');
     }
 
     //todo: user's account can be active or blocked

@@ -51,7 +51,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
-                        <li><a href="{{ url('/customer/my_books') }}">My books</a></li>
+                        <li><a href="{{ url('/customer/books') }}">My books</a></li>
                     @endif
                 </ul>
 

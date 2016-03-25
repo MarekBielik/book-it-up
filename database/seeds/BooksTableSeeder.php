@@ -27,6 +27,7 @@ class BooksTableSeeder extends Seeder
 
             DB::table('books')->insert([
                 'isbn' => $faker->isbn13,
+                //todo: get rid of the full stops at the end(the text function generates them)
                 'title' => $faker->text(30),
                 'genre' => $genres[rand(0, count($genres) - 1)],
                 'author' => $faker->name,

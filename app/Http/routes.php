@@ -37,7 +37,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'customer'], function() {
         Route::get('reserve/{book}', 'CustomerController@reserveBook')->name('reserve_book');
-        Route::get('books', 'CustomerController@books')->name('customer_books');
+        Route::get('books', 'CustomerController@displayBooks')->name('customer_books');
+        Route::get('cancel/{loan}', 'CustomerController@cancelReservation')->name('cancel_reservation');
+    });
+
+    Route::group(['prefix' => 'librarian'], function() {
+        Route::get('search_users_form', 'LibrarianController@searchUsersForm')->name('search_users_form');
+        Route::get('search_users', 'LibrarianController@searchUsers')->name('search_users');
     });
 });
 

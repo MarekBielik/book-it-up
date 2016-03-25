@@ -31,7 +31,28 @@ class CustomerController extends Controller
         return redirect()->route('customer_books');
     }
 
-    public function books() {
+    public function displayBooks() {
+
+        $books = Auth::user()->customerLoans;
+        $reservations = [];
+        $loans = [];
+
+        foreach ($books as $book) {
+            if ( $book->librarian == null)
+                $reservations[] = $book;
+            else
+                $loans[] = $book;
+        }
+
+        return view('customer.books', [
+            'reservations' => $reservations,
+            'loans' => $loans,
+        ]);
+    }
+
+    public function cancelReservation(Loan $loan) {
+        $loan->delete();
+
         return view('customer.books', [
             'loans' => Auth::user()->customerLoans,
         ]);

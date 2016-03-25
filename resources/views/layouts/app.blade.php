@@ -52,6 +52,9 @@
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
                         <li><a href="{{ url('/customer/books') }}">My books</a></li>
+                        @permission('librarianPermission')
+                        <li><a href="{{ url('/librarian/search_users') }}">Users</a></li>
+                        @endpermission
                     @endif
                 </ul>
 

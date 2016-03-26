@@ -42,8 +42,10 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['prefix' => 'librarian'], function() {
-        Route::get('search_users_form', 'LibrarianController@searchUsersForm')->name('search_users_form');
+        Route::get('display_users', 'LibrarianController@displayUsers')->name('display_users');
+        Route::get('display_user/{user}', 'LibrarianController@displayUser')->name('display_user');
         Route::get('search_users', 'LibrarianController@searchUsers')->name('search_users');
+        Route::get('create_loan/{loan}/', 'LibrarianController@createLoan')->name('create_loan');
     });
 });
 

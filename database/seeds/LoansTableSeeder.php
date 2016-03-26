@@ -24,7 +24,7 @@ class LoansTableSeeder extends Seeder
         $loan->from = date("Y/m/d");
         $loan->due_to = date("Y/m/d", strtotime('+30 days'));
         $loan->isActive = FALSE;
-        $loan->book()->associate(customer);
+        $loan->book()->associate($book);
         $loan->customer()->associate($customer);
         $loan->librarian()->associate($librarian);
         //$book->loans()->save($loan);

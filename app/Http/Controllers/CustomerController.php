@@ -23,7 +23,7 @@ class CustomerController extends Controller
         $loan->renewals = 3;
         $loan->from = date("Y/m/d");
         $loan->due_to = date("Y/m/d", strtotime('+30 days'));
-        $loan->isActive = TRUE;
+        $loan->isActive = FALSE;
         $loan->book()->associate($book);
         $loan->customer()->associate(Auth::user());
         $loan->save();

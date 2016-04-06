@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LibrarianController extends Controller
 {
+    use ControllerTrait;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -32,35 +34,22 @@ class LibrarianController extends Controller
         return view('librarian.search_users');
     }
 
-    public function displayUser(User $user) {
-
-        $books = $user->customerLoans;
-        $reservations = [];
-        $loans = [];
-
-        foreach ($books as $book) {
-            if ( $book->librarian == null)
-                $reservations[] = $book;
-            else
-                $loans[] = $book;
-        }
-
-        return view('librarian.display_user', [
-            'reservations' => $reservations,
-            'loans' => $loans,
-            'user' => $user,
-        ]);
-    }
-
-
     public function createLoan(Loan $loan) {
-
         $loan->isActive = TRUE;
+        $loan->from = date("Y/m/d");
+        $loan->due_to = date("Y/m/d", strtotime('+30 days'));
         $loan->librarian()->associate(Auth::user());
-        //$book->loans()->save($loan);
-        //$user->customerLoans()->save($loan);
         $loan->save();
 
         return $this->displayUser($loan->customer);
     }
+
+    public function returnBook(Loan $loan) {
+        $loan->isActive = FALSE;
+        $loan->due_to = date("Y/m/d");
+        $loan->save();
+
+        return $this->displayUser($loan->customer);
+    }
+
 }

@@ -12,10 +12,24 @@ class Book extends Model
         return $this->hasMany('App\Loan');
     }
 
-    public function onLoanCopies() {
-        return $this->loans->count();
+    //returns active loans and reservations of the current book
+    public function activeLoans() {
+        $loans = $this->loans;
+        $activeLoans = array();
+
+        foreach ($loans as $loan)
+            if ($loan->isTaken())
+                $activeLoans[] = $loan;
+
+        return $activeLoans;
     }
 
+    //returns number of actively loaned or reserved books
+    public function onLoanCopies() {
+        return count($this->activeLoans());
+    }
+
+    //returns number of copies free for reservation
     public function inStockCopies() {
         return $this->copies - $this->onLoanCopies();
     }

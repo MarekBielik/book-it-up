@@ -54,7 +54,7 @@
                         <th>Author</th>
                         <th>ISBN</th>
                         <th>Genre</th>
-                        <th>Reserved</th>
+                        <th>Borrowed</th>
                         <th>Due To</th>
                         <th></th>
                         </thead>
@@ -67,7 +67,9 @@
                                     <td class="table-text"><div>{{ $loan->book->genre }}</div></td>
                                     <td class="table-text"><div>{{ $loan->from }}</div></td>
                                     <td class="table-text"><div>{{ $loan->due_to }}</div></td>
-                                    <td><div><a href="/customer/cancel/{{ $loan->id }}" class="btn btn-primary" role="button">Cancel</a></div></td>
+                                    @permission('librarianPermission')
+                                    <td><div><a href="/librarian/return/{{ $loan->id }}" class="btn btn-primary" role="button">Return</a></div></td>
+                                    @endpermission
                                 </tr>
                         @endforeach
                         </tbody>

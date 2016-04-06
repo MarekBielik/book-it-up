@@ -27,10 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //loans of particular customers
     public function customerLoans() {
         return $this->hasMany('App\Loan', 'customer_id');
     }
 
+    //loans which were created by librarians for particular customers
     public function librarianLoans() {
         return $this->hasMany('App\Loan', 'librarian_id');
     }

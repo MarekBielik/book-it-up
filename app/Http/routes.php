@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('display_user/{user}', 'LibrarianController@displayUser')->name('display_user');
         Route::get('search_users', 'LibrarianController@searchUsers')->name('search_users');
         Route::get('create_loan/{loan}/', 'LibrarianController@createLoan')->name('create_loan');
+        Route::get('return/{loan}', 'LibrarianController@returnBook')->name('return_book');
     });
 });
 

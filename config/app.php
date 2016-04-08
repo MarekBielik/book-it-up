@@ -129,6 +129,9 @@ return [
         //extended validation class
         'Intervention\Validation\ValidationServiceProvider',
 
+        //flash messages provider
+        'Laracasts\Flash\FlashServiceProvider',
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -177,6 +180,10 @@ return [
 
     'aliases' => [
 
+        //flash messages
+        'Flash' => 'Laracasts\Flash\Flash',
+
+        //users' roles
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
         'App'       => Illuminate\Support\Facades\App::class,

@@ -80,6 +80,11 @@
         </div>
     </nav>
 
+    <!-- display messages -->
+    <div class="container">
+        @include('flash::message')
+    </div>
+
     @yield('content')
 
     <!-- JavaScripts -->

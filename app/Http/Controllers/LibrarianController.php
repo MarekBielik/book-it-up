@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Book;
+use Laracasts\Flash\Flash;
 
 class LibrarianController extends Controller
 {
@@ -54,8 +55,10 @@ class LibrarianController extends Controller
         if ($book->id == null) {
             $book = new Book();
             $url = route('home');
+            Flash::success('Book successfully added, thank you very much.');
         } else {
             $url = route('display_book', ['book' => $book->id]);
+            Flash::success('You actually changed the details, we are proud of you.');
         }
 
         $this->validate($request, [

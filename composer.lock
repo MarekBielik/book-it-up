@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17b9d9557b9daa44cd7dff7fb8e5a443",
+    "hash": "bc2f22e72e2313be5989cdd81aafcbd0",
     "content-hash": "43e7c199fdd473746e4d11f0560aaea8",
     "packages": [
         {
@@ -1835,7 +1835,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/e2ed11f29f418364cb7c9b5c7ee29ec2b4b15469",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/b749bff868026336dec1ba1a16c150728697353d",
                 "reference": "e2ed11f29f418364cb7c9b5c7ee29ec2b4b15469",
                 "shasum": ""
             },

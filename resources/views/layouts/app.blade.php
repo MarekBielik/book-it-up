@@ -55,6 +55,9 @@
                         @permission('librarianPermission')
                         <li><a href="{{ url('/librarian/search_users') }}">Users</a></li>
                         @endpermission
+                        @permission('adminPermission')
+                        <li><a href="{{ url('/admin/generate_report') }}">Generate Report</a></li>
+                        @endpermission
                     @endif
                 </ul>
 

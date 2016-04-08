@@ -9,9 +9,9 @@
                 </div>
 
                 <div class="panel-body">
-                    <form action="/librarian/display_users" method="GET" class="form-horizontal">
+                    <form action="{{ route('search_user_submit') }}" method="GET" class="form-horizontal">
                         {{ csrf_field() }}
-                                <!-- Book title or author -->
+                                <!-- Users name or email -->
                         <div class="form-group">
                             <label for="search-user" class="col-sm-3 control-label"></label>
 

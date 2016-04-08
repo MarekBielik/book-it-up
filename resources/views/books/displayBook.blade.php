@@ -17,6 +17,9 @@
                     @if ($book->inStockCopies())
                         <a href="/customer/reserve/{{ $book->id }}" class="btn btn-primary" role="button">Book it</a>
                         @endif
+                    @permission('librarianPermission')
+                    <a href="/librarian/edit_book/{{ $book->id }}" class="btn btn-default" role="button">Edit it</a>
+                    @endpermission
                 </div>
             </div>
         </div>

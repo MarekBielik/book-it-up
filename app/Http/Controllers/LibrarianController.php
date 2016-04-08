@@ -51,6 +51,15 @@ class LibrarianController extends Controller
     }
 
     public function editBook(Book $book = null, Request $request) {
+        //validate input
+        $this->validate($request, [
+            'bookTitle' => 'required|max:50|string',
+            'bookISBN' => 'required|isbn|unique:books,isbn,'.$book->id,
+            'bookAuthor' => 'required|max:50|string',
+            'bookGenre' => 'required|max:50|string',
+            'copies' => 'required|digits_between:1,3'
+        ]);
+
         //decide whether we are going to edit an existing book or create a new one
         if ($book->id == null) {
             $book = new Book();
@@ -61,14 +70,7 @@ class LibrarianController extends Controller
             Flash::success('You actually changed the details, we are proud of you.');
         }
 
-        $this->validate($request, [
-            'bookTitle' => 'required|max:50|string',
-            'bookISBN' => 'required|isbn|unique:books,isbn,'.$book->id,
-            'bookAuthor' => 'required|max:50|string',
-            'bookGenre' => 'required|max:50|string',
-            'copies' => 'required|digits_between:1,3'
-        ]);
-
+        //save it
         $book->title = $request->bookTitle;
         $book->isbn = $request->bookISBN;
         $book->author = $request->bookAuthor;
@@ -77,5 +79,11 @@ class LibrarianController extends Controller
         $book->save();
 
         return redirect($url);
+    }
+
+    public function deleteBook(Book $book) {
+        Flash::success('Well done, you got rid of the '.$book->title." and all the related loans, everything's gone.");
+        $book->delete();
+        return redirect()->route('home');
     }
 }

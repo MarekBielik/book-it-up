@@ -81,9 +81,11 @@
                                 @if ($book->id == null)
                                     <a href="/" class="btn btn-default" role="button">Cancel</a>
                                 @else
-                                    <!-- todo: change the url and write the controller -->
-                                    <a href="/{{ $book->id }}" class="btn btn-danger" role="button">Delete it</a>
-                                    <a href="{{ route('display_book', ['book' => $book->id]) }}" class="btn btn-default" role="button">Cancel</a>
+                                    <a href="{{ route('delete_book', ['book' => $book->id]) }}"
+                                       class="fa fa-btn fa-trash btn btn-danger"
+                                       role="button">Delete</a>
+                                    <a href="{{ route('display_book', ['book' => $book->id]) }}"
+                                       class="btn btn-default" role="button">Cancel</a>
                                 @endif
                             </div>
                         </div>

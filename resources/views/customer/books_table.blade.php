@@ -29,9 +29,14 @@
                                 <td class="table-text"><div>{{ $reservation->book->genre }}</div></td>
                                 <td class="table-text"><div>{{ $reservation->from }}</div></td>
                                 <td class="table-text"><div>{{ $reservation->due_to }}</div></td>
-                                <td><div><a href="/customer/cancel/{{ $reservation->id }}" class="btn btn-primary" role="button">Cancel</a></div></td>
+                                @role('customer')
+                                    <td><div><a href="{{ route('customer_cancel_reservation', ['loan' => $reservation->id]) }}"
+                                                class="btn btn-primary" role="button">Cancel</a></div></td>
+                                @endrole
                                 @permission('librarianPermission')
-                                <td><a href="{{ url('/librarian/create_loan/') }}/{{ $reservation->id }}" class="btn btn-success">Loan</a></td>
+                                    <td><div><a href="{{ route('librarian_cancel_reservation', ['loan' => $reservation->id]) }}"
+                                            class="btn btn-primary" role="button">Cancel</a></div></td>
+                                    <td><a href="{{ url('/librarian/create_loan/') }}/{{ $reservation->id }}" class="btn btn-success">Loan</a></td>
                                 @endpermission
                             </tr>
                         @endforeach
@@ -56,19 +61,23 @@
                         <th>Genre</th>
                         <th>Borrowed</th>
                         <th>Due To</th>
-                        <th></th>
+                        <th>Renewals</th>
                         </thead>
                         <tbody>
                         @foreach ($loans as $loan)
-                                <tr>
+                                <tr @if ($loan->isRenewable()) class="warning" @endif>
                                     <td class="table-text"><div>{{ $loan->book->title }}</div></td>
                                     <td class="table-text"><div>{{ $loan->book->author }}</div></td>
                                     <td class="table-text"><div>{{ $loan->book->isbn }}</div></td>
                                     <td class="table-text"><div>{{ $loan->book->genre }}</div></td>
                                     <td class="table-text"><div>{{ $loan->from }}</div></td>
                                     <td class="table-text"><div>{{ $loan->due_to }}</div></td>
+                                    <td class="table-text">{{ $loan->renewals }}</td>
+                                    @if ($loan->isRenewable())
+                                        <td><a href="{{ route('renew_loan', ['loan' => $loan->id]) }}" class="btn btn-primary" role="button">Renew</a></td>
+                                    @endif
                                     @permission('librarianPermission')
-                                    <td><div><a href="/librarian/return/{{ $loan->id }}" class="btn btn-primary" role="button">Return</a></div></td>
+                                    <td><a href="/librarian/return/{{ $loan->id }}" class="btn btn-primary" role="button">Return</a></td>
                                     @endpermission
                                 </tr>
                         @endforeach

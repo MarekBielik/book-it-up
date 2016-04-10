@@ -39,7 +39,7 @@ class LibrarianController extends Controller
         $loan->librarian()->associate(Auth::user());
         $loan->save();
 
-        return $this->displayUser($loan->customer);
+        return redirect()->route('display_user', ['user' => $loan->customer->id]);
     }
 
     public function returnBook(Loan $loan) {
@@ -47,7 +47,7 @@ class LibrarianController extends Controller
         $loan->due_to = date("Y/m/d");
         $loan->save();
 
-        return $this->displayUser($loan->customer);
+        return redirect()->route('display_user', ['user' => $loan->customer->id]);
     }
 
     public function editBook(Book $book = null, Request $request) {
@@ -85,5 +85,12 @@ class LibrarianController extends Controller
         Flash::success('Well done, you got rid of the '.$book->title." and all the related loans, everything's gone.");
         $book->delete();
         return redirect()->route('home');
+    }
+
+    public function cancelReservation(Loan $loan) {
+        $customer = $loan->customer;
+        $loan->delete();
+
+        return redirect()->route('display_user', ['user' => $customer->id]);
     }
 }

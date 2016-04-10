@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Request;
 use App\User;
 use App\Loan;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 //functions in this trait are used across various controllers which use this trait
 trait ControllerTrait {
 
-    //todo: check for eny expired reservations and cancel them
+    //todo: check for any expired reservations and cancel them
     //todo: check if the user has any overdue loans and block his activity
     public function displayUser(User $user = null) {
         //if no user provided, the user currently logged in will be used
@@ -42,13 +43,5 @@ trait ControllerTrait {
             'loans' => $activeLoans,
             'user' => $user,
         ]);
-    }
-
-    public function cancelReservation(Loan $loan)
-    {
-        $customer = $loan->customer;
-        $loan->delete();
-
-        return $this->displayUser($customer);
     }
 }

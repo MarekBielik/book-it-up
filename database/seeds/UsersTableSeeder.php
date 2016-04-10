@@ -17,21 +17,6 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        //generate random users
-        foreach (range(1, 100) as $index) {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => bcrypt('password'),
-            ]);
-        }
-
-
-        //create static users
-        DB::table('users')->insert(['name' => $faker->name, 'email' => 'admin@mail.com', 'password' => bcrypt('password'),]);
-        DB::table('users')->insert(['name' => $faker->name, 'email' => 'librarian@mail.com', 'password' => bcrypt('password'),]);
-        DB::table('users')->insert(['name' => $faker->name, 'email' => 'customer@mail.com', 'password' => bcrypt('password'),]);
-
 
         //define roles
         $admin = new Role();
@@ -69,16 +54,27 @@ class UsersTableSeeder extends Seeder
         $customer->attachPermissions([$customerPermission]);
 
 
-        //assign random roles
-        $users = User::all();
+        //generate random users
+        foreach (range(1, 100) as $index) {
+            $user = new User();
+            $user->name = $faker->name;
+            $user->email = $faker->email;
+            $user->password = bcrypt('password');
+            $user->active = true;
+            $user->save();
 
-        foreach ($users as $user) {
-            //approximately one librarian per 10 customers
+            //attach random roles
             if (rand(1, 10) == 1)
                 $user->attachRole($librarian);
             else
                 $user->attachRole($customer);
         }
+
+
+        //create static users
+        DB::table('users')->insert(['name' => $faker->name, 'email' => 'admin@mail.com', 'password' => bcrypt('password'), 'active' => true]);
+        DB::table('users')->insert(['name' => $faker->name, 'email' => 'librarian@mail.com', 'password' => bcrypt('password'), 'active' => true]);
+        DB::table('users')->insert(['name' => $faker->name, 'email' => 'customer@mail.com', 'password' => bcrypt('password'), 'active' => true]);
 
 
         //assign static roles

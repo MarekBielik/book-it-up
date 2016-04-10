@@ -41,7 +41,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('reserve/{book}', 'CustomerController@reserveBook')->name('reserve_book');
         Route::get('books', 'CustomerController@displayBooks')->name('customer_books');
         Route::get('cancel/{loan}', 'CustomerController@cancelReservation')->name('customer_cancel_reservation');
-        Route::get('renew/{loan}', 'CustomerController@renewLoan')->name('renew_loan');
+        Route::get('renew/{loan}', 'CustomerController@renewLoan')->name('customer_renew_loan');
     });
 
     Route::group(['prefix' => 'librarian'], function() {
@@ -55,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('create_loan/{loan}/', 'LibrarianController@createLoan')->name('create_loan');
         Route::get('return/{loan}', 'LibrarianController@returnBook')->name('return_book');
         Route::get('cancel/{loan}', 'LibrarianController@cancelReservation')->name('librarian_cancel_reservation');
+        Route::get('renew/{loan}', 'LibrarianController@renewLoan')->name('librarian_renew_loan');
 
         Route::get('edit_book/{book?}', function (Book $book = null) {
             return view ('librarian.edit_book', ['book' => $book]);

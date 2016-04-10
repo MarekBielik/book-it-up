@@ -32,10 +32,18 @@ class LibrarianController extends Controller
         ]);
     }
 
+    public function renewLoan(Loan $loan) {
+        $loan->renewals++;
+        $loan->due_to = date("Y/m/d", strtotime($loan->due_to.' + 30 days'));
+        $loan->save();
+
+        return redirect()->route('display_user', ['user' => $loan->customer->id]);
+    }
+
     public function createLoan(Loan $loan) {
         $loan->isActive = TRUE;
         $loan->from = date("Y/m/d");
-        $loan->due_to = date("Y/m/d", strtotime('+30 days'));
+        $loan->due_to = date("Y/m/d", strtotime('+ 30 days'));
         $loan->librarian()->associate(Auth::user());
         $loan->save();
 

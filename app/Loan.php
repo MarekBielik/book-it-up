@@ -41,7 +41,11 @@ class Loan extends Model
     public function isRenewable() {
         return
             $this->renewals < 3 &&
-            date("Y/m/d") <= date("Y/m/d") &&
+            date("Y/m/d") <= date("Y/m/d",  strtotime($this->due_to)) &&
             date("Y/m/d") >= date("Y/m/d", strtotime($this->due_to.' - 7 days'));
+    }
+    
+    public function isExpired() {
+        return date("Y/m/d") > date("Y/m/d", strtotime($this->due_to));
     }
 }

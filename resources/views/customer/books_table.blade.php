@@ -45,7 +45,6 @@
                 @endif
             </div>
 
-
             <!-- Loans -->
             <div class="panel-heading">
                 <strong>Loans</strong>
@@ -65,7 +64,8 @@
                         </thead>
                         <tbody>
                         @foreach ($loans as $loan)
-                                <tr @if ($loan->isRenewable()) class="warning" @endif>
+                                <tr @if ($loan->isRenewable()) class="warning"
+                                        @elseif ($loan->isExpired()) class="danger" @endif>
                                     <td class="table-text"><div>{{ $loan->book->title }}</div></td>
                                     <td class="table-text"><div>{{ $loan->book->author }}</div></td>
                                     <td class="table-text"><div>{{ $loan->book->isbn }}</div></td>
@@ -74,7 +74,14 @@
                                     <td class="table-text"><div>{{ $loan->due_to }}</div></td>
                                     <td class="table-text">{{ $loan->renewals }}</td>
                                     @if ($loan->isRenewable())
-                                        <td><a href="{{ route('renew_loan', ['loan' => $loan->id]) }}" class="btn btn-primary" role="button">Renew</a></td>
+                                        @role('customer')
+                                        <td><div><a href="{{ route('customer_renew_loan', ['loan' => $loan->id]) }}"
+                                                    class="btn btn-primary" role="button">Renew</a></div></td>
+                                        @endrole
+                                        @permission('librarianPermission')
+                                        <td><div><a href="{{ route('librarian_renew_loan', ['loan' => $loan->id]) }}"
+                                                    class="btn btn-primary" role="button">Renew</a></div></td>
+                                        @endpermission
                                     @endif
                                     @permission('librarianPermission')
                                     <td><a href="/librarian/return/{{ $loan->id }}" class="btn btn-primary" role="button">Return</a></td>

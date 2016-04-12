@@ -53,7 +53,7 @@
                     @if (!Auth::guest())
                         <li><a href="{{ url('/customer/books') }}">My books</a></li>
                         @permission('librarianPermission')
-                        <li><a href="{{ url('/librarian/search_users') }}">Users</a></li>
+                        <li><a href="{{ url('/librarian/search_user') }}">Users</a></li>
                         @endpermission
                         @permission('adminPermission')
                         <li><a href="{{ url('/admin/generate_report') }}">Generate Report</a></li>
@@ -82,6 +82,11 @@
             </div>
         </div>
     </nav>
+
+    <!-- display messages -->
+    <div class="container">
+        @include('flash::message')
+    </div>
 
     @yield('content')
 

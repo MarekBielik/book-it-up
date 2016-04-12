@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <!-- Display Validation Errors -->
+            @include('common.errors')
             <!-- Search Book Form -->
             <form action="/search_book" method="GET" class="form-horizontal">
                 {{ csrf_field() }}
@@ -21,9 +23,12 @@
                 <!-- Search Book Button -->
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-6">
-                        <button type="submit" class="btn btn-default">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-btn"></i>Search
                         </button>
+                        @permission('librarianPermission')
+                        <a href="{{ route('edit_book') }}" class="btn btn-default">New book</a>
+                        @endpermission
                     </div>
                 </div>
             </form>

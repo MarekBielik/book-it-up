@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function reserveBook(Book $book)
     {
         $loan = new Loan();
-        $loan->renewals = 3;
+        $loan->renewals = 0;
         $loan->from = date("Y/m/d");
         $loan->due_to = date("Y/m/d", strtotime('+30 days'));
         $loan->isActive = false;
@@ -36,5 +36,20 @@ class CustomerController extends Controller
     public function displayBooks()
     {
         return $this->displayUser();
+    }
+
+    public function renewLoan(Loan $loan) {
+        $loan->renewals++;
+        $loan->due_to = date("Y/m/d", strtotime($loan->due_to.' + 30 days'));
+        $loan->save();
+
+        return $this->displayUser();
+    }
+
+    public function cancelReservation(Request $request, Loan $loan) {
+        $customer = $loan->customer;
+        $loan->delete();
+
+        return redirect()->route('customer_books');
     }
 }

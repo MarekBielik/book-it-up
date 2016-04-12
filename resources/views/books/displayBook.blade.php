@@ -14,9 +14,18 @@
                     Genre: <br> {{ $book->genre }}<br><br>
                     In stock: <br> {{ $book->inStockCopies() }}<br><br>
                     On Loan: <br> {{ $book->onLoanCopies() }} <br><br>
-                    @if ($book->inStockCopies())
+
+                    @if ($book->inStockCopies() && Auth::user()->active)
                         <a href="/customer/reserve/{{ $book->id }}" class="btn btn-primary" role="button">Book it</a>
-                        @endif
+                    @endif
+
+                    @if (!Auth::user()->active)
+                        <p class="bg-danger">Your account has been disabled, you probably have some loans overdue.</p>
+                    @endif
+
+                    @permission('librarianPermission')
+                    <a href="/librarian/edit_book/{{ $book->id }}" class="btn btn-default" role="button">Edit it</a>
+                    @endpermission
                 </div>
             </div>
         </div>

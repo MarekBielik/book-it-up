@@ -26,7 +26,7 @@ class LibrarianController extends Controller
         if(Input::get('search_user_button')) {
             $users = User::where('name', 'like', '%' . $searchString . '%')
                 ->orWhere('email', 'like', '%' . $searchString . '%')
-                ->get();
+                ->paginate(20);
 
             return view('librarian.display_users', [
                 'users' => $users,
@@ -34,17 +34,12 @@ class LibrarianController extends Controller
         }
         else if(Input::get('search_librarian_button')) {
             // select id, name, email from users, role_user where users.id = role_user.user_id and role_id = 2;
-
             
             return view('librarian.display_users', [
                 'users' => $users,
             ]);
         }
-
     }
-
-
-
     public function renewLoan(Loan $loan) {
         $loan->renewals++;
         $loan->due_to = date("Y/m/d", strtotime($loan->due_to.' + 30 days'));

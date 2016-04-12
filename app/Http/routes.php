@@ -64,10 +64,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('edit_book/submit/{book?}', 'LibrarianController@editBook')->name('edit_book_submit');
         Route::get('delete_book/{book}', 'LibrarianController@deleteBook')->name('delete_book');
     });
-    
-    Route::group(['prefix' => 'admin'], function() {
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::post('manage_user', 'AdminController@manageUser')->name('admin_manage_user');
         Route::get('generate_report', 'AdminController@generateReport')->name('generate_report');
         Route::get('findMostPopular', 'AdminController@findMostPopular')->name('findMostPopular');
+
     });
 });
 

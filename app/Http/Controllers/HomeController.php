@@ -10,17 +10,6 @@ use App\Book;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     *
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-     * /
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -41,7 +30,7 @@ class HomeController extends Controller
 
         $books = Book::where('title', 'like', '%'.$searchString.'%')
             ->orWhere('author', 'like', '%'.$searchString.'%')
-            ->get();
+            ->paginate(20);
 
         return view('books.displayBooks', [
             'books' => $books,

@@ -24,7 +24,7 @@ class LibrarianController extends Controller
 
         $users = User::where('name', 'like', '%'.$searchString.'%')
             ->orWhere('email', 'like', '%'.$searchString.'%')
-            ->get();
+            ->paginate(20);
 
 
         return view('librarian.display_users', [

@@ -29,6 +29,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="text-center">{!! $books->links() !!}</div>
                 </div>
             </div>
         </div>

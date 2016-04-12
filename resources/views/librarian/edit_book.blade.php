@@ -28,7 +28,7 @@
 
                             <div class="col-sm-6">
                                 <input type="text" name="bookTitle" id="bookTitle"
-                                       class="form-control" value="{{ $book->title }}"
+                                       class="form-control" value="{{ $book->title ?: old('bookTitle') }}"
                                        placeholder="Please, write the title here.">
                             </div>
                         </div>
@@ -38,7 +38,7 @@
 
                             <div class="col-sm-6">
                                 <input type="text" name="bookAuthor" id="bookAuthor"
-                                       class="form-control" value="{{ $book->author }}"
+                                       class="form-control" value="{{ $book->author ?: old('bookAuthor') }}"
                                        placeholder="Yea, author's name goes right here.">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
 
                             <div class="col-sm-6">
                                 <input type="text" name="bookISBN" id="bookISBN"
-                                       class="form-control" value="{{ $book->isbn }}"
+                                       class="form-control" value="{{ $book->isbn ?: old('bookISBN') }}"
                                        placeholder="Must be unique, you know.">
                             </div>
                         </div>
@@ -58,7 +58,7 @@
 
                             <div class="col-sm-6">
                                 <input type="search" name="bookGenre" id="bookGenre"
-                                       class="form-control" value="{{ $book->genre }}"
+                                       class="form-control" value="{{ $book->genre ?: old('bookGenre') }}"
                                        placeholder="Whatever, please.">
                             </div>
                         </div>
@@ -68,7 +68,7 @@
 
                             <div class="col-sm-6">
                                 <input type="number" name="copies" id="copies"
-                                       class="form-control" value="{{ $book->copies }}"
+                                       class="form-control" value="{{ $book->copies ?: old('copies') }}"
                                        placeholder="https://en.wikipedia.org/wiki/Natural_number">
                             </div>
                         </div>

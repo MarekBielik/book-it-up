@@ -22,14 +22,20 @@
                             </div>
                         </div>
 
-                        <!-- Search Book Button -->
+                        <!-- Search Buttons -->
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                            <div class="col-sm-offset-4 col-sm-0">
+                                <!-- search user -->
+                                <button type="submit" class="btn btn-default" name="search_user_button" value="search_user_button">
                                     <i class="fa fa-btn"></i>Search
+                                </button>
+                                <!-- search librarian -->
+                                <button type="submit" class="btn btn-default" name="search_librarian_button" value="search_librarian_button">
+                                    <i class="fa fa-btn"></i>Librarian Search
                                 </button>
                             </div>
                         </div>
+                        <!-- Search Librarian Button -->
                     </form>
                 </div>
             </div>

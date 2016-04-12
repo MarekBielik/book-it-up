@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Book;
+use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
 class LibrarianController extends Controller
@@ -22,15 +23,27 @@ class LibrarianController extends Controller
     public function searchUser(Request $request) {
         $searchString = $request->searchUser;
 
-        $users = User::where('name', 'like', '%'.$searchString.'%')
-            ->orWhere('email', 'like', '%'.$searchString.'%')
-            ->get();
+        if(Input::get('search_user_button')) {
+            $users = User::where('name', 'like', '%' . $searchString . '%')
+                ->orWhere('email', 'like', '%' . $searchString . '%')
+                ->get();
 
+            return view('librarian.display_users', [
+                'users' => $users,
+            ]);
+        }
+        else if(Input::get('search_librarian_button')) {
+            // select id, name, email from users, role_user where users.id = role_user.user_id and role_id = 2;
 
-        return view('librarian.display_users', [
-            'users' => $users,
-        ]);
+            
+            return view('librarian.display_users', [
+                'users' => $users,
+            ]);
+        }
+
     }
+
+
 
     public function renewLoan(Loan $loan) {
         $loan->renewals++;

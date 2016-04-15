@@ -71,6 +71,7 @@ class AuthController extends Controller
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
         $user->active = true;
+        $user->save();
         $user->attachRole($customerRole);
 
         return $user;

@@ -2,9 +2,8 @@
 
 @section('content')
 <div class="container">
-
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1" style="padding-top:90px">
             <!-- Display Validation Errors -->
             @include('common.errors')
             <!-- Search Book Form -->
@@ -17,7 +16,7 @@
                     <div class="col-sm-6">
                         <input type="search" name="searchBook" id="search-book"
                                class="form-control" value="{{ old('book') }}"
-                                placeholder="Book title or author, it's up to you, it's your life. Decide.">
+                                placeholder="Book titles or author, it's up to you, it's your life. Decide.">
                     </div>
                 </div>
 

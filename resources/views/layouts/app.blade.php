@@ -3,6 +3,7 @@
 
 <head>
     <title>DIT Library System- The DIT Library for Everyone.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -52,6 +53,13 @@
 
         }
 
+        .group{
+            position:absolute;
+            right:600px;
+            width: 20%;
+            top: 0cm;
+
+        }
         .dit2 {
             position:absolute;
             left:0px;
@@ -152,23 +160,11 @@
                 <img src="{{URL::asset('/image/ditlogo.png')}}" alt="profile Pic" height="50" width="50">
             </div>
         </div>
-
+        <div class="group">
             <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav">
                     @if (!Auth::guest())
-                        <li><a href="{{ url('/customer/books') }}">My books</a></li>
-                        @permission('librarianPermission')
-                        <li><a href="{{ url('/librarian/search_user') }}">Users</a></li>
-                        @endpermission
-                        @permission('adminPermission')
-                        <li><a href="{{ url('/admin/generate_report') }}">Generate Report</a></li>
-                        @endpermission
-                    @endif
-                </ul>
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    @if (!Auth::guest())
-                        <li><a href="{{ url('/customer/books') }}">My books</a></li>
+                        <li><a href="{{ url('/customer/books') }}"><font color=#006AA6>My books</font></a></li>
                         @permission('librarianPermission')
                         <li><a href="{{ url('/librarian/search_user') }}">Users</a></li>
                         @endpermission
@@ -178,6 +174,7 @@
                     @endif
                 </ul>
             </ul>
+           </div>
         </div>
     </div>
 </nav>
@@ -257,7 +254,7 @@
     <br>
         <!-- New Info Links section added within #footer -->
             <div align="centre">
-                <h3>INFORMATION FOR</h3>
+                <h4>INFORMATION FOR</h4>
                 <ul>
                     <li><a href="http://www.dit.ie/study/">Prospective Students</a></li>
                     <li><a href="http://www.dit.ie/study/internationaloffice/">International Students</a></li>
@@ -272,7 +269,7 @@
 
             </div>
             <div align="centre">
-                <h3>INFORMATION ABOUT</h3>
+                <h4>INFORMATION ABOUT</h4>
                 <ul>
                     <li><a href="http://www.dit.ie/about/">The Institute</a></li>
                     <li><a href="http://www.dit.ie/study/">Programmes &amp; Courses</a></li>
@@ -286,7 +283,7 @@
                 </ul>
             </div>
             <div class="column">
-                <h3>A–Z INDEX</h3>
+                <h4>A–Z INDEX</h4>
                 <ul>
                     <li><a href="http://www.dit.ie/study/undergraduate/programmes/">A–Z Programmes &amp; Courses</a></li>
                     <li><a href="http://www.dit.ie/dita-z/studentsa-z/">A–Z for Students</a></li>
@@ -296,7 +293,7 @@
         </div>
 
         <div id="connect">
-            <h3>Connect with DIT</h3>
+            <h4>Connect with DIT</h4>
             <ul class="inline">
                 <li><a href="https://www.facebook.com/dublininstituteoftechnology" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/facebook.gif" alt="facebook.jpg" style="width : 32px; height : 32px;     " /></a></li>
                 <li><a href="https://twitter.com/ditofficial/" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/twitter.gif" alt="twitter.jpg" style="width : 32px; height : 32px;     " /></a></li>

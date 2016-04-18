@@ -2,10 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel-body">
-                    <table class="table table-striped task-table">
+        <h2>Library System Book Table</h2>
+        <div class="table-responsive">
+            <table class="table">
                         <thead>
                         <th>Name</th>
                         <th>Email</th>

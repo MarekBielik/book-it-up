@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Library System Book Table</h2>
+        <h2><div align="center">Library System Book Table</div></h2>
         <div class="table-responsive">
             <table class="table">
                 <thead>

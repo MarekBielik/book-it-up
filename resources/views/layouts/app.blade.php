@@ -10,18 +10,21 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
-        .navbar {
-            margin-bottom: 0;
-            border-radius: 0;
-            background-color: #FFC300;
+        * {
+            margin: 0;
         }
-
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {
-            height: 450px;
-            width:100%;
+        html, body {
+            height: 100%;
         }
-
+        .page-wrap {
+            min-height: 100%;
+            /* equal to footer height */
+            margin-bottom: 0px;
+        }
+        .page-wrap:after {
+            content: "";
+            display: block;
+        }
         .right {
             position: absolute;
             top: 0cm;
@@ -98,24 +101,21 @@
 
         .midSection{
             background-color:#f0f2f1;
-            height:1050px;
+            height:1300px;
         }
 
-        /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            background-color: #006AA6;
-            height: 100%;
+
+        .site-footer, .page-wrap:after {
+            height: 0px;
+        }
+        .site-footer {
+            background: #3d4143;
+            height: 796px;
         }
 
         /* Set black background color, white text and some padding */
-        footer {
-            position:absolute;
-            width:100%;
-            background-color:#3d4143;
-            top: 38cm;
 
-        }
+
 
         /* On small screens, set height to 'auto' for sidenav and grid */
         @media screen and (max-width: 767px) {
@@ -138,6 +138,7 @@
 </head>
 
 <body id="app-layout">
+<div class="page-wrap">
     <!-- Top Section -->
     <div style="background-color:#0095da">
         <div>
@@ -201,9 +202,9 @@
         </div>
 
         <div class="goldLine"></div>
-    </div>
+     </div>
 
-    <div class="midSection">
+     <div class="midSection">
 
 
 
@@ -215,25 +216,24 @@
         <div class="searchpart">
             @yield('content')
         </div>
-    </div>
+        </div>
 
-    <div class="goldLine"></div>
-
-    <footer>
-        <div class="ditlogo4">
+     <div class="goldLine"></div>
+        <div class="page-wrap">
+     <footer class="site-footer">
+        <div align="right">
             <a href="http://www.dit.ie/study/"><img src="{{URL::asset('/image/logo4.png')}}" alt="profile Pic" height="76" width="240"></a>
-        </div>
-        <div class="dit2">
-            <a href="http://www.dit.ie/computing/"><img src="{{URL::asset('/image/dit2.png')}}" alt="profile Pic" height="250" width="250"></a>
-        </div>
 
-        <div class="union">
+
+            <a href="http://www.dit.ie/computing/"><img src="{{URL::asset('/image/dit2.png')}}" alt="profile Pic" height="250" width="250"></a>
+
+
+
             <a href="http://www.ditsu.ie/"><img src="{{URL::asset('/image/union.png')}}" alt="profile Pic" height="150" width="150"></a>
-        </div>
-        <div class="net">
+
             <a href="https://www.facebook.com/NetSocDIT/"><img src="{{URL::asset('/image/net.png')}}" alt="profile Pic" height="150" width="250"></a>
         </div>
-    <div class="container">
+        <div class="container">
             <div class="row" style="background-color:#3d4143">
 
             </div>
@@ -252,6 +252,12 @@
                             <li><a href="http://www.dit.ie/hothouse/"><font color="white">Business &amp; Entrepreneurs</font></a></li>
                             <li><a href="http://www.dit.ie/ditfoundation/"><font color="white">Donors</font></a></li>
                             <li><a href="http://www.dit.ie/about/organisation/instituteoffices/publicaffairsoffice/media/"><font color="white">Media</font></a></li>
+                            <br>
+                            <li><a href="https://www.facebook.com/dublininstituteoftechnology" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/facebook.gif" alt="facebook.jpg" style="width : 32px; height : 32px;     " /></a></li>
+                            <li><a href="https://twitter.com/ditofficial/" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/twitter.gif" alt="twitter.jpg" style="width : 32px; height : 32px;     " /></a></li>
+                            <li><a href="http://www.linkedin.com/company/dublin-institute-of-technology" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/linkedin.gif" alt="linkedin.jpg" style="width : 32px; height : 32px;     " /></a></li>
+                            <li><a href="https://www.youtube.com/user/DITPublicAffairs/"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/youtube.gif" alt="youtube.jpg" style="width : 32px; height : 32px;     " /></a></li>
+
                         </ul>
                     </div>
 
@@ -269,33 +275,36 @@
                             <li><a href="http://www.dit.ie/ace/"><font color="white">Access &amp; Civic Engagement</font></a></li>
                         </ul>
                     </div>
-
-                    <div align="centre" style="float:left;padding-left:30px">
-                        <ul>
-                                <li><a href="https://www.facebook.com/dublininstituteoftechnology" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/facebook.gif" alt="facebook.jpg" style="width : 32px; height : 32px;     " /></a></li>
-                                <li><a href="https://twitter.com/ditofficial/" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/twitter.gif" alt="twitter.jpg" style="width : 32px; height : 32px;     " /></a></li>
-                                <li><a href="http://www.linkedin.com/company/dublin-institute-of-technology" target="_blank"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/linkedin.gif" alt="linkedin.jpg" style="width : 32px; height : 32px;     " /></a></li>
-                                <li><a href="https://www.youtube.com/user/DITPublicAffairs/"><img src="http://www.dit.ie/media/aboutdit/images/grangegorman/youtube.gif" alt="youtube.jpg" style="width : 32px; height : 32px;     " /></a></li>
+                    <div align="centre" style="float:left">
 
 
-                                <p class="membership">Member of the European University Association</p>
-                                <p><!-- navigation object : Last Updated -->Last date modified: April 2015 | <!-- navigation object : Copyright and date --><!--Plain code template-->
-                                    Copyright &copy; 1998 - 2015 Dublin Institute of Technology
-                                    <!--Plain code template-->
-                                </p>
-                                <br />
-                                <!--Compulsory logos -->
-                                <p align="center">
-                                    <a href="http://www.dit.ie/campuslife/studentsupport/studentfinancialsupport/"  title="Student Assistance Fund Financial Support"><img src="http://www.dit.ie/media/images/Irelandeufundslogoenglishcolour.jpg" border="0px" alt="National Development Plan logo"  height="60px" /></a>&nbsp;
-                                    <a href="http://www.dit.ie/campuslife/studentsupport/studentfinancialsupport/"  title="Student Assistance Fund Financial Support"><img src="http://www.dit.ie/media/images/eusocialfund.jpg" alt="eu social fund logo"  height="60px"  /></a>
-                                </p>
-                                <p align="center"><em>Investing in your future - Ag infheistiú I do dhán<br />Member of the European University Association</em></p>
+                    </div><!--connect-->
 
-                        </ul>
+                    <div align="centre" style="float:left">
+                        <p><a href="http://www.dit.ie">Home</a> | <a href="/tools/contacts/">Contact</a> | <a href="/tools/map/">Sitemap</a> | <a href="/dita-z/">A-Z</a> | <a href="/tools/help/">Help</a> | <a href="/tools/disclaimer/privacy/">Cookie &amp; Privacy Statement</a></p>
+
                     </div>
+
+                    <div align="centre" style="float:left">
+                        <p class="membership">Member of the European University Association</p>
+                        <p><!-- navigation object : Last Updated -->Last date modified: April 2015 | <!-- navigation object : Copyright and date --><!--Plain code template-->
+                            Copyright &copy; 1998 - 2015 Dublin Institute of Technology
+                            <!--Plain code template-->
+                        </p>
+                        <br />
+                        <!--Compulsory logos -->
+                        <div align="centre" style="float:left">
+                            <a href="http://www.dit.ie/campuslife/studentsupport/studentfinancialsupport/"  title="Student Assistance Fund Financial Support"><img src="http://www.dit.ie/media/images/Irelandeufundslogoenglishcolour.jpg" border="0px" alt="National Development Plan logo"  height="60px" /></a>&nbsp;
+                            <a href="http://www.dit.ie/campuslife/studentsupport/studentfinancialsupport/"  title="Student Assistance Fund Financial Support"><img src="http://www.dit.ie/media/images/eusocialfund.jpg" alt="eu social fund logo"  height="60px"  /></a>
+                        </p>
+                        <p align="center"><em>Investing in your future - Ag infheistiú I do dhán<br />Member of the European University Association</em></p>
+                    </div>
+
               </div>
           </div>
+     </footer>
+        </div>
+        </div>
     </div>
-    </footer>
 </body>
 </html>

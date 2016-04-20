@@ -49,7 +49,6 @@
             </div>
         </div>
     </div>
-
     <!-- make the rows clickable -->
     <script>
         jQuery(document).ready(function($) {

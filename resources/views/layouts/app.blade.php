@@ -136,6 +136,7 @@
         }
     </style>
 </head>
+
 <body id="app-layout">
     <!-- Top Section -->
     <div style="background-color:#0095da">
